@@ -6,7 +6,7 @@ class SearchService {
     }
     postSearch = (req: Request, res: Response) => {
         const search = req.query.search_query as string;
-        if(typeof search !== 'string' || search.length < 1) return res.status(400).send({ message: 'Invalid search query' });
+        if(typeof search !== 'string' || search.length < 1) return res.status(400).json({ message: 'Invalid search query' });
         this.searches.push(search.toLowerCase());
         return res.status(200).json({ status: 'ok', code: 200 }); //refactor this
     }

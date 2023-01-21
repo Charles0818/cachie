@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: Cachie
+  description: |-
+    Cachie provides us the ability to know how many times a word or a combination of words have been queried since the engine has been running
+  version: 1.0.11
+paths:
+  /v1/search:
+    post:
+      parameters:
+        - in: query
+          name: search_query
+          description: accepts at least a word
+          schema:
+            type: string
+          required: true
+      tags:
+        - search
+      summary: Post search query
+      operationId: searchQuery
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    status:
+                      type: string
+                      example: "ok"
+        '400':
+          description: Invalid search query supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    message:
+                      type: string
+                      example: "Invalid search query"
+  /v1/analyse:
+    post:
+      parameters:
+        - in: query
+          name: analysis_token
+          description: |-
+            accepts a comma separated series of one or two words that we call the Analysis token
+          schema:
+            type: string
+          required: true
+      tags:
+        - analyse
+      summary: Retrieve number of occurrences of search token
+      operationId: analysisToken
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    status:
+                      type: string
+                      example: "ok"
+                    code:
+                      type: integer
+                      example: 200
+                    time:
+                      type: string
+                      example: '3ms'
+                    results:
+                       $ref: '#/components/schemas/AnalysisResult'
+                    
+                    
+        '400':
+          description: Invalid search query supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    message:
+                      type: string
+                      example: "Invalid search query"
+components:
+  schemas:
+    AnalysisResult:
+      type: object
+      additionalProperties: {
+        type: number,
+        example: 3,
+      }
+    
