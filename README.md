@@ -26,3 +26,6 @@ Other commands:
 ```
 yarn test   # runs unit tests
 ```
+
+## Swagger API Doc
+Open `localhost:8000/api-docs` to view API documentations
