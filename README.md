@@ -1,6 +1,6 @@
 # CACHIE
 
-This is the frontend for the MAINTAIN Bio-Motion-Lab Platform.
+Cachie provides us the ability to know how many times a word or a combination of words have been queried since the engine has been running
 
 ## Instructions
 
